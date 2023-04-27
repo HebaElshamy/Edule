@@ -1,0 +1,66 @@
+@extends('user.layouts.app')
+@section('new_style')
+<link rel="stylesheet" href="{{asset('user_assets/')}}/css/new_style.css"/>
+@endsection
+
+@section('search_section')
+	<!-- Page info -->
+	<div class="page-info-section set-bg" data-setbg="{{asset('user_assets/')}}/img/page-bg/5.jpg">
+		<div class="container">
+			{{-- <div class="site-breadcrumb">
+				<a href="#">Home</a>
+				<span>Elements</span>
+			</div> --}}
+		</div>
+	</div>
+	<!-- Page info end -->
+  <!-- search section -->
+	<section class="login-section search-section ss-other-page mb-2">
+		<div class="container">
+			<div class="search-warp">
+				<div class="section-title text-white">
+					<h2><span>Hello Again!</span></h2>
+                    <p><span>Welcome back you've been missied!</span></p>
+				</div>
+				<div class="row">
+					<div class="col-12 offset-lg-1">
+						<!-- search form -->
+						<form class="course-search-form " method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="row">
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <div class="col-12 ">
+                                    <input type="email" class="@error('email') is-invalid @enderror" placeholder="Email"  name="email" value={{old('email')}}>
+                                </div>
+                                <div class="col-12 ">
+                                    <input type="password" placeholder="Password" name="password" >
+                                </div>
+                                <div class="col-12 ">
+                                    <input type="checkbox"  name="remember" > <label for="remember" class="text-white">Remember Me </label>
+                                </div>
+                                <div class="col-12 ">
+                                    <button class="site-btn btn-dark d-block">Login</button>
+                                    <a href="{{ route('password.request') }}" class="d-block">I forgot my password</a>
+                                    <a href="{{ route('register') }}" >Dont have an acount?Sing up</a>
+                                </div>
+                            </div>
+
+
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- search section end -->
+@endsection

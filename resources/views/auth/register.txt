@@ -1,0 +1,65 @@
+@extends('user.layouts.app')
+@section('new_style')
+<link rel="stylesheet" href="{{asset('user_assets/')}}/css/new_style.css"/>
+@endsection
+
+@section('search_section')
+	<!-- Page info -->
+	<div class="page-info-section set-bg" data-setbg="{{asset('user_assets/')}}/img/page-bg/5.jpg">
+		<div class="container">
+			{{-- <div class="site-breadcrumb">
+				<a href="#">Home</a>
+				<span>Elements</span>
+			</div> --}}
+		</div>
+	</div>
+	<!-- Page info end -->
+  <!-- search section -->
+	<section class="login-section search-section ss-other-page mb-2">
+		<div class="container">
+			<div class="search-warp">
+				<div class="section-title text-white">
+					<h2><span>Sing up</span></h2>
+                    <p><span>Create an account,it's free</span></p>
+				</div>
+				<div class="row">
+					<div class="col-12 offset-lg-1">
+						<!-- search form -->
+						<form class="course-search-form " method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <input type="text"
+                                    value="{{old('name')}}"
+                                    placeholder="Full Name"
+                                    name="name"
+                                        @error('name') class="is-invalid" @enderror
+                                        >
+                                </div>
+                                <div class="col-12 ">
+                                    <input type="email" placeholder="Email" value="{{old('email')}}"  name="email"  @error('email') class="is-invalid" @enderror>
+                                </div>
+                                <div class="col-12 ">
+                                    <input type="password" placeholder="Password" name="password" @error('password') class="is-invalid" @enderror>
+                                </div>
+                                <div class="col-12 ">
+                                    <input type="password" placeholder="Confirm Password" name="password_confirmation" >
+                                </div>
+
+                                <div class="col-12 ">
+                                    <button class="site-btn btn-dark d-block">Register</button>
+
+                                    <a href="{{ route('login')}}" >Already have an account?Log in</a>
+                                </div>
+                            </div>
+
+
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- search section end -->
+@endsection

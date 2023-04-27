@@ -1,0 +1,15 @@
+Hy , sorry for the late comment :
+
+if you facing this issue , you can run these command on terminal
+
+-> npm install --save-dev vite laravel-vite-plugin
+
+Then you need to update your package.json file
+
+"scripts": { "dev": "vite", "build": "vite build" }
+
+Finally, you can trigger this command below to build Vite and create the manifest file.
+
+-> npm run build
+
+your problem is solved, Boom!!!!

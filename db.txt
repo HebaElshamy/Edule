@@ -1,0 +1,34 @@
+user can by a course and watch content
+
+user(role ,email , password ,name ,image)
+
+subject (name ,image)
+
+discount_type => precent, fixed
+course(title,description,image,price,subject_id,discount_type,discoun_value,max_discount)
+
+lectures (course_id,title,description,link,image,views)
+
+//morph relation
+
+rating(user_id ,rating,comment,ratable_type,ratable_id)
+       (1,4,'dd','App\\Models\Courde',1)
+
+course_users(course_id,user_id,rating,comment)
+tracher_users(tracher_id,user_id,rating,comment)
+product_users(product_id,user_id,rating,comment)
+lecture_users(lecture_id,user_id,rating,comment)
+
+
+orsers(user_id,course_id,payment_status,grand_total,payment_method)
+user_courses(user_id,course_id,progress)
+
+
+
+
+
+task 1 : dashboard page template
+task 2 : custom herlper function ---> done
+task 3 : بيانات حقيقية فى الصفحة الرئيسية
+task 4 : course page
+task 5 : search page

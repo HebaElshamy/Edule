@@ -98,7 +98,7 @@ class WelcomeController extends Controller{
     {
         $search =$request->input('search');
         $courses =Course::where('title','like','%'.$search.'%')->latest()->paginate(12);
-        // return redirect()->route('user.welcome.courses')->with(compact('courses')); how it working
+        //  return redirect()->route('user.welcome.courses',compact('courses')); // how it working
         return view('website.courses',compact('courses'));
     }
 }

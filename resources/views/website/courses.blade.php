@@ -12,8 +12,11 @@ Our <span>Courses</span>
             <!-- Courses Category Wrapper Start  -->
             <div class="courses-category-wrapper">
                 <div class="courses-search search-2">
-                    <input type="text" placeholder="Search here">
+                    <form action="{{route('user.welcome.search')}}" method="GET">
+                        @csrf
+                    <input type="text" name="search" placeholder="Search here">
                     <button><i class="icofont-search"></i></button>
+                    </form>
                 </div>
 
                 <ul class="category-menu">

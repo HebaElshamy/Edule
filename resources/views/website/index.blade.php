@@ -6,7 +6,7 @@
 
         <!-- Slider Shape Start -->
         <div class="slider-shape">
-            <img class="shape-1 animation-round" src="{{asset('website_assets/')}}/assets/images/shape/shape-8.png" alt="Shape">
+            <img class="shape-1 animation-round" src="{{website_assets('assets/images/shape/shape-8.png')}}" alt="Shape">
         </div>
         <!-- Slider Shape End -->
 
@@ -26,7 +26,7 @@
         <!-- Slider Courses Box Start -->
         <div class="slider-courses-box">
 
-            <img class="shape-1 animation-left" src="{{asset('website_assets/')}}/assets/images/shape/shape-5.png" alt="Shape">
+            <img class="shape-1 animation-left" src="{{website_assets('assets/images/shape/shape-5.png')}}" alt="Shape">
 
             <div class="box-content">
                 <div class="box-wrapper">
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <img class="shape-2" src="{{asset('website_assets/')}}/assets/images/shape/shape-6.png" alt="Shape">
+            <img class="shape-2" src="{{website_assets('assets/images/shape/shape-6.png')}}" alt="Shape">
 
         </div>
         <!-- Slider Courses Box End -->
@@ -95,8 +95,9 @@
 
                 <!-- Courses Search Start -->
                 <div class="courses-search">
-                    <form action="#">
-                        <input type="text" placeholder="Search your course">
+                    <form action="{{route('user.welcome.search')}}" method="GET">
+                        @csrf
+                        <input type="text" name="search" placeholder="Search your course">
                         <button><i class="flaticon-magnifying-glass"></i></button>
                     </form>
                 </div>

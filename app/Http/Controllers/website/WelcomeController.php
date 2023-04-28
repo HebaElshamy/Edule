@@ -8,6 +8,9 @@ use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Summary of WelcomeController
+ */
 class WelcomeController extends Controller{
 
     function getCourses(int $items){
@@ -85,5 +88,17 @@ class WelcomeController extends Controller{
 
 
         return view('website.user.public-profile');
+    }
+    /**
+     * Summary of search
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function search(Request $request)
+    {
+        $search =$request->input('search');
+        $courses =Course::where('title','like','%'.$search.'%')->latest()->paginate(12);
+        // return redirect()->route('user.welcome.courses')->with(compact('courses')); how it working
+        return view('website.courses',compact('courses'));
     }
 }

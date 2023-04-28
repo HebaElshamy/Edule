@@ -13,7 +13,7 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
     font-weight: normal !important;
     font-variant: normal;
     text-transform: none;
-    line-height: 3;
+    line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

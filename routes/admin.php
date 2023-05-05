@@ -1,16 +1,22 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LectuereController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',function()
-{
-    return view('admin.home');
+Route::get('/', [HomeController::class,'index'])->name('index');
+Route::get('/users', [UserController::class,'index'])->name('all.users');
+Route::group(['prefix' => 'user'], function () {
 
-})->name('index');
-
+    Route::delete('/{id}/destroy', [UserController::class,'destroy'])->name('user.destroy');
+    Route::get('/{id}/show', [UserController::class,'show'])->name('user.show');
+    Route::get('/{id}/create/course', [UserController::class,'create'])->name('user.create.course');
+    Route::post('/{id}/store/course', [UserController::class,'store'])->name('user.store.course');
+    Route::delete('/{id}/destroy/course', [UserController::class,'destroyCourse'])->name('user.destroy.course');
+});
 //subject route
 Route::resource('subjects',SubjectController::class)->except('show');
 

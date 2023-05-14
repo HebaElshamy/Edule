@@ -32,3 +32,20 @@ task 2 : custom herlper function ---> done
 task 3 : بيانات حقيقية فى الصفحة الرئيسية
 task 4 : course page
 task 5 : search page
+
+
+auth ckeck
+
+logged in
+{
+    buying check {
+        show button
+    } else {
+        no button
+    }
+}
+else {2
+no button
+}
+
+my courses pages

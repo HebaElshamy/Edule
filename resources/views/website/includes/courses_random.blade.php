@@ -28,7 +28,7 @@
                             <h4 class="title"><a href="{{route('user.welcome.singleCourse',$course->id)}}">{{$course->title}}</a></h4>
                             <div class="courses-meta">
                                 <span> <i class="icofont-clock-time"></i> 08 hr 15 mins</span>
-                                <span> <i class="icofont-read-book"></i> 29 Lectures </span>
+                                <span> <i class="icofont-read-book"></i> {{ $course->lectures()->count() }} Lectures </span>
                             </div>
                             <div class="courses-price-review">
                                 <div class="courses-price">

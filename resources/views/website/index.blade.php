@@ -131,6 +131,7 @@
                @include('website.includes.courses_tab')
 
             </div>
+           
             <!-- All Courses tab content End -->
 
             <!-- All Courses BUtton Start -->

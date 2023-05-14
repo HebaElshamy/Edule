@@ -16,7 +16,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/{id}/create/course', [UserController::class,'create'])->name('user.create.course');
     Route::post('/{id}/store/course', [UserController::class,'store'])->name('user.store.course');
     Route::delete('/{id}/destroy/course', [UserController::class,'destroyCourse'])->name('user.destroy.course');
+
 });
+
 //subject route
 Route::resource('subjects',SubjectController::class)->except('show');
 

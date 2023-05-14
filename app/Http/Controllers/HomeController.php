@@ -17,7 +17,8 @@ class HomeController extends Controller
         }
         else{
             // نركب الصفحة بتاعت التمبلت فى الداشبورد
-            return view('website.user.public-profile');
+            // return view('website.user.public-profile');
+            return redirect()->route('user.welcome.profile',Auth::user()->id);
         }
 
     }
@@ -27,5 +28,5 @@ class HomeController extends Controller
         // dd($count_user);
         return view('admin.home',compact('count_user'));
     }
-   
+
 }

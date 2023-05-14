@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -67,9 +68,9 @@ class WelcomeController extends Controller{
     }
     public function enroll($id)
     {
+        $course=Course::findOrFail($id);
 
-
-        return view('website.after-enroll');
+        return view('website.after-enroll',compact('course'));
     }
     public function loginForm()
     {
@@ -85,9 +86,16 @@ class WelcomeController extends Controller{
     }
     public function profile($id)
     {
-
-
-        return view('website.user.public-profile');
+        $courseId=[];
+        $userCourses =Auth::user()->userCourses;
+        foreach($userCourses as $userCourse)
+        {
+            array_push($courseId,$userCourse->course_id);
+        }
+        $courses =Course::whereIn('id',$courseId)
+                        ->latest()->paginate(9);
+        // dd($courses);
+        return view('website.user.public-profile',compact('courses'));
     }
     /**
      * Summary of search

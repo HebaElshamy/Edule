@@ -24,61 +24,68 @@
 
 
                         </div>
-                        <div class="col-md-6">
 
-                             <!-- Single Courses Start -->
-                    <div class="single-courses">
-                        <div class="courses-images">
-                            <a href="courses-details.html"><img src="{{asset('website_assets/')}}/assets/images/courses/courses-01.jpg" alt="Courses"></a>
 
-                            <div class="courses-option dropdown">
-                                <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="icofont-share-alt"></i> Share</a></li>
-                                    <li><a href="#"><i class="icofont-plus"></i> Create Collection</a></li>
-                                    <li><a href="#"><i class="icofont-star"></i> Favorite</a></li>
-                                    <li><a href="#"><i class="icofont-archive"></i> Archive</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="courses-content">
-                            <div class="courses-author">
-                                <div class="author">
-                                    <div class="author-thumb">
-                                        <a href="#"><img src="{{asset('website_assets/')}}/assets/images/author/author-01.jpg" alt="Author"></a>
+                            @foreach ($courses as $course)
+
+                            <div class="col-md-6">
+                                   <!-- Single Courses Start -->
+                                   <div class="single-courses">
+                                    <div class="courses-images">
+                                        <a href="{{route('user.welcome.singleCourse',$course->id)}}"><img src="{{uploadImage($course->image)}}" alt="Courses"></a>
+
+                                        {{-- <div class="courses-option dropdown">
+                                            <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#"><i class="icofont-share-alt"></i> Share</a></li>
+                                                <li><a href="#"><i class="icofont-plus"></i> Create Collection</a></li>
+                                                <li><a href="#"><i class="icofont-star"></i> Favorite</a></li>
+                                                <li><a href="#"><i class="icofont-archive"></i> Archive</a></li>
+                                            </ul>
+                                        </div> --}}
                                     </div>
-                                    <div class="author-name">
-                                        <a class="name" href="#">Jason Williams</a>
-                                        <a class="name-2" href="#">Ohula Malsh</a>
+                                    <div class="courses-content">
+                                        {{-- <div class="courses-author">
+                                            <div class="author">
+                                                <div class="author-thumb">
+                                                    <a href="#"><img src="{{asset('website_assets/')}}/assets/images/author/author-01.jpg" alt="Author"></a>
+                                                </div>
+                                                <div class="author-name">
+                                                    <a class="name" href="#">Jason Williams</a>
+                                                    <a class="name-2" href="#">Ohula Malsh</a>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+                                        <h4 class="title"><a href="{{route('user.welcome.singleCourse',$course->id)}}">{{$course->title}}</a></h4>
+
+                                        <div class="courses-rating">
+                                            <p>{{$course->userCourses()->first()->progress}}% Complete</p>
+
+                                            <div class="rating-progress-bar">
+                                                <div class="rating-line" style="width: {{$course->userCourses()->first()->progress}}%;"></div>
+                                            </div>
+
+                                            <div class="rating-meta">
+                                                <span class="rating-star">
+                                                        <span class="rating-bar" style="width: 80%;"></span>
+                                                </span>
+                                                <p>Your rating</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            <!-- Single Courses End -->
+
+
+
+
                             </div>
-
-                            <h4 class="title"><a href="courses-details.html">Data Science and Machine Learning with Python - Hands On!</a></h4>
-
-                            <div class="courses-rating">
-                                <p>38% Complete</p>
-
-                                <div class="rating-progress-bar">
-                                    <div class="rating-line" style="width: 38%;"></div>
-                                </div>
-
-                                <div class="rating-meta">
-                                    <span class="rating-star">
-                                            <span class="rating-bar" style="width: 80%;"></span>
-                                    </span>
-                                    <p>Your rating</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Courses End -->
-
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>
@@ -113,17 +120,24 @@
 
                     <!-- Sidebar Widget Category Start -->
                     <div class="sidebar-widget">
-                        <h4 class="widget-title">User Name</h4>
+                        <h4 class="widget-title">{{Auth::user()->name}}</h4>
 
                         <div class="widget-category">
                             <ul class="category-list">
                                 <li><a href="#">Public Profile </a></li>
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Account Security</a></li>
-                                <li><a href="#">Close Account</a></li>
+                                {{-- <li><a href="#">Close Account</a></li> --}}
+                                <li type="button"  data-bs-toggle="modal" data-bs-target="#reviewsModal"><a >Close Account</a> </li>
+
+
 
                             </ul>
+
+
                         </div>
+
+
                     </div>
                     <!-- Sidebar Widget Category End -->
 
@@ -138,7 +152,80 @@
     </div>
 </div>
 <!-- Blog End -->
+
+    <li type="button"  data-bs-toggle="modal" data-bs-target="#reviewsModal"></li>
+
+
+<div class="modal fade" id="reviewsModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger ">Are you sure you want to delete your account?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Reviews Form Start -->
+            <div class="modal-body reviews-form">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Single Form Start -->
+                            <div class="single-form">
+                                <p> Please enter your password to confirm you would like to permanently delete your account.</p>
+                            </div>
+                            <!-- Single Form End -->
+                        </div>
+                        <div class="col-md-12">
+                            <!-- Single Form Start -->
+                            <div class="single-form">
+                                <input id="password"
+                                name="password"
+                                type="password"
+                                class="@error('password')
+                                        is-invalid
+                                    @enderror"
+                                placeholder="{{ __('Password') }}">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <!-- Single Form End -->
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Single Form Start -->
+                            <div class="row">
+                            <div class="col-md-9">
+                                <div class="single-form">
+                                    <button class="btn btn-danger btn-hover-dark">Delete Account</button>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                            <div class="single-form float-lg-right">
+
+                                <button type="button" class="btn btn-secondary btn-hover-dark float-right"  data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
+                            </div>
+                            </div>
+                            <!-- Single Form End -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Reviews Form End -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
 @endsection
+
+
 
 
 

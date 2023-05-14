@@ -13,6 +13,10 @@ class Course extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function lectures()
+    {
+        return $this->hasMany(Lecture::class);
+    }
     public function userCourses() {
 
         return $this->hasMany(UserCourse::class);

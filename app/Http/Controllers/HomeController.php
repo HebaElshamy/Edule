@@ -25,7 +25,6 @@ class HomeController extends Controller
     public function index ()
     {
         $count_user = User::where('role' ,'=','user')->count();
-        // dd($count_user);
         return view('admin.home',compact('count_user'));
     }
 

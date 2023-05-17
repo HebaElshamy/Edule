@@ -42,11 +42,21 @@
                                 <!-- Single Form Start -->
                                 <div class="single-form">
                                     <input type="email" placeholder="Email" class="@error('email') is-invalid @enderror"  name="email" value={{old('email')}}>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form Start -->
                                 <div class="single-form">
                                     <input type="password" placeholder="Password" name="password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form Start -->

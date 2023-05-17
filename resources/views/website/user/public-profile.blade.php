@@ -92,7 +92,7 @@
                 <!-- Blog Wrapper End -->
 
                 <!-- Page Pagination End -->
-                <div class="page-pagination">
+                {{-- <div class="page-pagination">
                     <ul class="pagination justify-content-center">
                         <li><a href="#"><i class="icofont-rounded-left"></i></a></li>
                         <li><a class="active" href="#">1</a></li>
@@ -100,7 +100,7 @@
                         <li><a href="#">3</a></li>
                         <li><a href="#"><i class="icofont-rounded-right"></i></a></li>
                     </ul>
-                </div>
+                </div> --}}
                 <!-- Page Pagination End -->
 
             </div>
@@ -121,28 +121,26 @@
                     <!-- Sidebar Widget Category Start -->
                     <div class="sidebar-widget">
                         <h4 class="widget-title">{{Auth::user()->name}}</h4>
-
+                        {{-- show delete account errors  --}}
+                        @if ($errors->has('password'))
+                            <br>
+                            <div class="alert alert-danger">
+                                @foreach ($errors->get('password') as $error)
+                                    {{ $error }}<br>
+                                @endforeach
+                            </div>
+                        @endif
                         <div class="widget-category">
                             <ul class="category-list">
                                 <li><a href="#">Public Profile </a></li>
                                 <li><a href="#">Profile</a></li>
                                 <li><a href="#">Account Security</a></li>
                                 {{-- <li><a href="#">Close Account</a></li> --}}
-                                <li type="button"  data-bs-toggle="modal" data-bs-target="#reviewsModal"><a >Close Account</a> </li>
-
-
-
+                                <li ><a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">Close Account</a>  </li>
                             </ul>
-
-
                         </div>
-
-
                     </div>
                     <!-- Sidebar Widget Category End -->
-
-
-
                 </div>
                 <!-- Blog Sidebar End -->
 
@@ -153,73 +151,65 @@
 </div>
 <!-- Blog End -->
 
-    <li type="button"  data-bs-toggle="modal" data-bs-target="#reviewsModal"></li>
 
 
-<div class="modal fade" id="reviewsModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger ">Are you sure you want to delete your account?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <!-- Reviews Form Start -->
-            <div class="modal-body reviews-form">
-                <form action="#">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Single Form Start -->
-                            <div class="single-form">
-                                <p> Please enter your password to confirm you would like to permanently delete your account.</p>
-                            </div>
-                            <!-- Single Form End -->
-                        </div>
-                        <div class="col-md-12">
-                            <!-- Single Form Start -->
-                            <div class="single-form">
-                                <input id="password"
-                                name="password"
-                                type="password"
-                                class="@error('password')
-                                        is-invalid
-                                    @enderror"
-                                placeholder="{{ __('Password') }}">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <!-- Single Form End -->
-                        </div>
-
-                        <div class="col-md-12">
-                            <!-- Single Form Start -->
-                            <div class="row">
-                            <div class="col-md-9">
-                                <div class="single-form">
-                                    <button class="btn btn-danger btn-hover-dark">Delete Account</button>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                            <div class="single-form float-lg-right">
-
-                                <button type="button" class="btn btn-secondary btn-hover-dark float-right"  data-bs-dismiss="modal" aria-label="Close"> Cancel</button>
-                            </div>
-                            </div>
-                            <!-- Single Form End -->
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- Reviews Form End -->
+  <!-- Delete Account Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="exampleModalLabel">Are you sure you want to delete your account? </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <!-- فورم الإدخال الخاصة بالنموذج -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single Form Start -->
+                        <div class="single-form">
+                            <p> Please enter your password to confirm you would like to permanently delete your account.</p>
+                        </div>
+                    <!-- Single Form End -->
+                    </div>
+                <form method="POST" action="{{ route('user.welcome.destroy') }}">
+                    @csrf
+                    @method('delete')
+
+                <div class="col-md-12">
+                    <!-- Single Form Start -->
+                    <div class="single-form">
+                        <span class="is-invalid text-danger" role="alert">
+                            <strong>Require *</strong>
+                        </span>
+                        <input id="password"
+                        name="password"
+                        type="password"
+                        class="@error('password')
+                                is-invalid
+                            @enderror"
+                        placeholder="Password">
+                    </div>
+                    <!-- Single Form End -->
+                </div>
+
+            <!-- زرّ لإرسال النموذج -->
+            </div>
+
+        </div>
+        <div class="modal-footer justify-content-start">
+
+
+            <button type="submit" class="btn btn-danger ">Delete Account</button>
+
+            </form>
+
+            {{-- <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">إغلاق</button> --}}
+
+        </div>
+
+      </div>
     </div>
 </div>
-
-
 
 
 

@@ -41,21 +41,41 @@ Register <span>Form</span>
                                 <div class="single-form">
                                     <input type="text" placeholder="Name" value="{{old('name')}}" name="name"
                                     @error('name') class="is-invalid" @enderror>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form Start -->
                                 <div class="single-form">
                                     <input type="email" placeholder="Email" value="{{old('email')}}" name="email"  @error('email') class="is-invalid" @enderror>
+                                    @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form Start -->
                                 <div class="single-form">
                                     <input type="password" placeholder="Password" name="password" @error('password') class="is-invalid" @enderror>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form Start -->
                                 <div class="single-form">
                                     <input type="password" placeholder="Confirm Password" name="password_confirmation">
+                                    @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form Start -->

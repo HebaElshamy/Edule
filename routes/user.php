@@ -12,7 +12,7 @@ Route::group(['as'=>'welcome.'],function(){
     Route::get('login',[WelcomeController::class ,'loginForm'])->name('login.form');
     Route::get('register',[WelcomeController::class ,'registerForm'])->name('register.form');
     Route::get('search',[WelcomeController::class ,'search'])->name('search');
-    // Route::get('search',[WelcomeController::class ,'search'])->name('search');
+    Route::delete('destroy',[WelcomeController::class ,'destroy'])->middleware('auth')->name('destroy');
 });
 
 

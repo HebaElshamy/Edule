@@ -5,9 +5,13 @@ namespace App\Http\Controllers\website;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 /**
  * Summary of WelcomeController
@@ -83,6 +87,40 @@ class WelcomeController extends Controller{
 
 
         return view('website.register');
+    }
+    public function destroy(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        // dd(Auth::user()->password);
+
+        $password = $request->input('password');
+        $request->validate([
+        'password' =>'required', Rules\Password::defaults()
+        ] ) ;
+
+
+        if (Hash::check($password, Auth::user()->password)) {
+            // كلمة السر صحيحة، يمكن حذف الحساب
+            if($user->image)
+            {
+                File::delete('uploaded/'.$user->image);
+
+            }
+            $user->delete();
+            return redirect()->route('user.welcome.index')->with('success', 'تم حذف الحساب بنجاح.');
+        } else {
+            // كلمة السر غير صحيحة، رجاءً المحاولة مرة أخرى
+            return back()->withErrors(['password' => 'Incorrect Password ']);
+        }
+
+
+
+
+
+
+
+
     }
     public function profile($id)
     {
